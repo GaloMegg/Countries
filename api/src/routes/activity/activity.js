@@ -45,7 +45,9 @@ router.get('/activity', async (req, res, next) => {
             });
             res.json(asd);
         }
-        res.json(await Activity.findAll());
+        res.json(await Activity.findAll({
+            include: Country,
+        }));
     } catch (e) {
         next(e);
     }
