@@ -1,0 +1,15 @@
+.card {
+    margin: 2%;
+    width: 25%;
+    border: 1px solid #ccc;
+    padding: 4%;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;  
+    text-align: center;
+    .card__img {
+        width: 100%;
+    }
+}

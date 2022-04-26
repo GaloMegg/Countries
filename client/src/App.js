@@ -1,9 +1,11 @@
-import './App.css';
+import Content from "./content/Content";
+import Header from "./header/Header";
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Countries</h1>
+      <Header />
+      <Content />
     </div>
   );
 }
