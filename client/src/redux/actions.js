@@ -34,6 +34,21 @@ function postActivity(x) {
             })
         }
         catch (e) {
+            alert(e)
+        }
+    }
+}
+function searchCountry(x) {
+    return async (dispatch) => {
+        try {
+            let req = await fetch(`http://localhost:3001/countries?&name=${x}`)
+            let country = await req.json()
+            dispatch({
+                type: GET_COUNTRIES,
+                payload: country
+            })
+        }
+        catch (e) {
             console.log(e)
         }
     }
@@ -41,5 +56,6 @@ function postActivity(x) {
 
 module.exports = {
     getCountries,
-    postActivity
+    postActivity,
+    searchCountry
 }

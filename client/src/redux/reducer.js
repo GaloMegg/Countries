@@ -1,7 +1,6 @@
 const initialState = {
     countries: [],
     activities: [],
-    country: {},
 }
 
 const reducer = (state = initialState, action) => {
