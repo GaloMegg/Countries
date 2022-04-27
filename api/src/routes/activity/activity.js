@@ -3,7 +3,7 @@ const { Country, Activity } = require('../../db.js');
 
 const router = Router();
 
-router.post('/activity', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     const { name, dificulty, duration, season, country } = req.body;
     const seasons = ['summer', 'winter', 'autumn', 'spring'];
     try {
@@ -33,7 +33,7 @@ router.post('/activity', async (req, res, next) => {
     }
 });
 
-router.get('/activity', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     const { id } = req.query;
     try {
         if (id) {

@@ -1,12 +1,20 @@
+import { Route, Routes } from "react-router-dom";
 import Content from "./content/Content";
-import Header from "./header/Header";
+import Form from "./Form/Form";
+import Landing from "./Landing";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
+    <>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/home/*" element={<Content />} />
+
+      </Routes>
+      {/* 
       <Content />
-    </div>
+      <Form /> */}
+    </>
   );
 }
 

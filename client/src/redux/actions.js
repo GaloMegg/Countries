@@ -20,7 +20,7 @@ function getCountries() {
 function postActivity(x) {
     return async (dispatch) => {
         try {
-            let req = await fetch('http://localhost:3001/activities', {
+            let req = await fetch('http://localhost:3001/activity', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

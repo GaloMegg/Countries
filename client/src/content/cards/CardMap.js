@@ -3,7 +3,7 @@ import Card from './Card'
 
 const CardMap = ({ countries }) => {
     return (
-        countries.map((e) => <Card {...e} />)
+        countries.map((e) => <Card {...e} key={e.id} />)
     )
 }
 

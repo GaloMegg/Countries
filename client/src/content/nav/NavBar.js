@@ -1,9 +1,10 @@
 import React from 'react'
 
 const NavBar = () => {
+    
     return (
         <nav className='nav'>
-            <a href="">Add Activity</a>
+            <input type="text" name="" id="" placeholder='&#128270; Buscar' />
             <a href="">Add Activity</a>
             <a href="">Add Activity</a>
             <a href="">Add Activity</a>

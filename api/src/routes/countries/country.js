@@ -14,8 +14,7 @@ router.get('/:id', async (req, res, next) => {
             },
             include: Activity,
         });
-        console.log(country);
-        res.json(country);
+        res.json(...country);
     } catch (e) {
         next(e);
     }
