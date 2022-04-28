@@ -4,10 +4,10 @@ const { Country, Activity } = require('../../db.js');
 const router = Router();
 
 router.post('/', async (req, res, next) => {
-    const { name, dificulty, duration, season, country } = req.body;
+    const { name, dificulty, duration, season, countries } = req.body;
     const seasons = ['summer', 'winter', 'autumn', 'spring'];
     try {
-        if ((name, dificulty, duration, country)) {
+        if ((name, dificulty, duration, countries)) {
             if (dificulty < 1 || dificulty > 5) {
                 next('Dificulty must be a number between 1 and 5');
                 return;
@@ -24,8 +24,10 @@ router.post('/', async (req, res, next) => {
                 duration,
                 season,
             });
-            const found = await Country.findByPk(country);
-            act?.addCountry([found]);
+            countries.forEach(async element => {
+                const found = await Country.findByPk(element);
+                act?.addCountry([found]);
+            });
             res.json(act.toJSON());
         }
     } catch (e) {

@@ -6,6 +6,9 @@ const CountryDetailContainer = () => {
     const { id } = useParams()
     useEffect(() => {
         fetchingData(id)
+        return () => {
+            setCountry({})
+        }
     }, [id])
     async function fetchingData(id) {
         let req = await fetch(`http://localhost:3001/countries/${id}`)
