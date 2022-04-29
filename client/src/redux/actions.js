@@ -55,6 +55,20 @@ function searchCountry(x) {
         }
     }
 }
+function filteredCountry(x) {
+    return async dispatch => {
+        try {
+            let req = await fetch(`http://localhost:3001/countries/filter/${x}`)
+            let country = await req.json()
+            dispatch({
+                type: GET_COUNTRIES,
+                payload: country
+            })
+        }
+        catch (e) { console.log(e) }
+    }
+}
+
 
 
 function sortedCountries(x) {
@@ -70,6 +84,7 @@ module.exports = {
     postActivity,
     searchCountry,
     sortedCountries,
+    filteredCountry,
     GET_COUNTRIES,
     POST_ACTIVITY,
     SORTED_COUNTRIES

@@ -63,8 +63,8 @@ router.get('/', async (req, res, next) => {
         next(e);
     }
 });
-router.get("/filter", async (req, res, next) => {
-    const { continent } = req.query;
+router.get("/filter/:continent", async (req, res, next) => {
+    const { continent } = req.params;
     try {
         const found = await Country.findAll({
             where: {

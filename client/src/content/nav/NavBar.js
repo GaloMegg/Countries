@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCountries, searchCountry, sortedCountries } from "../../redux/actions"
+import { getCountries, filteredCountry, searchCountry, sortedCountries } from "../../redux/actions"
 const NavBar = () => {
     const [alphabeticalOrder, setAlphabeticalOrder] = useState(true)
     const [isOrderedAlph, setIsOrderedAlph] = useState(false)
@@ -13,6 +13,7 @@ const NavBar = () => {
         disp(searchCountry(e.target.value))
     }
     const AZsort = () => {
+        setIsOrderPop(false)
         let sortedArr = alphabeticalOrder ? countries.sort((a, b) => {
             if (a.name < b.name) return -1
             if (a.name > b.name) return 1
@@ -30,12 +31,15 @@ const NavBar = () => {
     const continentFilter = (e) => {
         if (e.target.value === "all") {
             disp(getCountries())
+            return
         }
-        let filteredCountries = countries.filter(country => country.continent === e.target.value)
-        disp(sortedCountries(filteredCountries))
+
+        disp(filteredCountry(e.target.value))
+
     }
 
     const popSort = () => {
+        setIsOrderedAlph(false)
         let sortedArr = popOrder ? countries.sort((a, b) => {
             if (a.population < b.population) return -1
             if (a.population > b.population) return 1
@@ -52,6 +56,8 @@ const NavBar = () => {
     const resetHandler = () => {
         disp(getCountries())
         setIsOrderedAlph(false)
+        setIsOrderPop(false)
+
     }
     return (
         <nav className='nav'>
