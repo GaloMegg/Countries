@@ -63,4 +63,19 @@ router.get('/', async (req, res, next) => {
         next(e);
     }
 });
+router.get("/filter", async (req, res, next) => {
+    const { continent } = req.query;
+    try {
+        const found = await Country.findAll({
+            where: {
+                continent: continent,
+            },
+            include: Activity,
+        });
+        res.json(found);
+    } catch (e) {
+        next(e);
+    }
+})
+
 module.exports = router;

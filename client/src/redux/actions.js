@@ -1,8 +1,10 @@
 const GET_COUNTRIES = 'GET_COUNTRIES';
 const POST_ACTIVITY = 'POST_ACTIVITY';
+const SORTED_COUNTRIES = 'SORTED_COUNTRIES'
 
 
-function getCountries() {
+function getCountries(x) {
+    if (x) { return { type: GET_COUNTRIES, payload: x } }
     return async (dispatch) => {
         try {
             let req = await fetch('http://localhost:3001/countries')
@@ -54,8 +56,21 @@ function searchCountry(x) {
     }
 }
 
+
+function sortedCountries(x) {
+    return {
+        type: SORTED_COUNTRIES,
+        payload: x
+    }
+}
+
+
 module.exports = {
     getCountries,
     postActivity,
-    searchCountry
+    searchCountry,
+    sortedCountries,
+    GET_COUNTRIES,
+    POST_ACTIVITY,
+    SORTED_COUNTRIES
 }
