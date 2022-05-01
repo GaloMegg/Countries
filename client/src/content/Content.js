@@ -12,7 +12,7 @@ const Content = () => {
             <section className='content'>
                 <Routes >
                     <Route path="/form" element={<Form />} />
-                    <Route path="/" element={<><NavBar /> <CardsContainer /> </>} />
+                    <Route path="/" element={<><CardsContainer /><NavBar />  </>} />
                     <Route path="/details/:id" element={<CountryDetailContainer />} />
                 </Routes>
             </section>
