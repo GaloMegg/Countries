@@ -1,7 +1,9 @@
+@use "../../variables"as v;
+
 .nav {
 
     display: flex;
     flex-direction: column;
-    background-color: blue;
+    background-color: v.$BgPrimary;
     width: 25%;
 }

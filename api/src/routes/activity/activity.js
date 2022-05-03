@@ -39,13 +39,14 @@ router.get('/', async (req, res, next) => {
     const { id } = req.query;
     try {
         if (id) {
-            let asd = await Activity.findAll({
+            let act = await Activity.findAll({
                 where: {
                     id,
                 },
                 include: Country,
             });
-            res.json(asd);
+            res.json(...act);
+            return
         }
         res.json(await Activity.findAll({
             include: Country,

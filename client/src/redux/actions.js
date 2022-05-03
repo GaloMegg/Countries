@@ -13,7 +13,8 @@ function getCountries(x) {
             let countries = await req.json()
             dispatch({
                 type: GET_COUNTRIES,
-                payload: countries
+                payload: countries,
+                contentType: "countries"
             })
         }
         catch (e) {
@@ -42,6 +43,20 @@ function postActivity(x) {
         }
     }
 }
+function getActivities() {
+    return async dispatch => {
+        try {
+            let req = await fetch('http://localhost:3001/activity')
+            let activities = await req.json()
+            dispatch({
+                type: GET_COUNTRIES,
+                payload: activities,
+                contentType: "activities"
+            })
+        }
+        catch (e) { console.log(e) }
+    }
+}
 function searchCountry(x) {
     return async (dispatch) => {
         try {
@@ -64,7 +79,8 @@ function filteredCountry(x) {
             let country = await req.json()
             dispatch({
                 type: GET_COUNTRIES,
-                payload: country
+                payload: country,
+                contentType: "countries"
             })
         }
         catch (e) { console.log(e) }
@@ -102,6 +118,7 @@ module.exports = {
     filteredCountry,
     countCountries,
     setPage,
+    getActivities,
     setCountriesPage,
     GET_COUNTRIES,
     POST_ACTIVITY,

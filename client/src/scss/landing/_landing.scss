@@ -1,0 +1,15 @@
+@use "../variables" as v;
+@import "./btn";
+.landing {
+    background-color: v.$BgPrimary ;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("./images/landing.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

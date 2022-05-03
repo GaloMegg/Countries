@@ -4,12 +4,8 @@ const CountryDetail = ({ name, img, id, capital, continent, subregion, area, pop
     return (
         <div>
             <img src={img} alt="" loading='lazy' />
-            <h1>
-                {name}
-            </h1>
-            <p>
-                {id}
-            </p>
+            <h1>                {name}            </h1>
+            <p>                {id}            </p>
             <p>Capital: {capital}</p>
             <p>Continent: {continent}</p>
             <p>Sub-Region: {subregion}</p>

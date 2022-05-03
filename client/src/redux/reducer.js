@@ -1,7 +1,10 @@
 import { SORTED_COUNTRIES, GET_COUNTRIES, POST_ACTIVITY, COUNT_COUNTRIES, SET_COUNTRIES_PAGE, SET_PAGE } from './actions'
+
+
 const initialState = {
     countries: [],
     activities: [],
+    contentType: 'countries',
     count: 1,
     countriesPerPage: 9,
 }
@@ -11,7 +14,8 @@ const reducer = (state = initialState, action) => {
         case GET_COUNTRIES:
             return {
                 ...state,
-                countries: action.payload
+                countries: action.payload,
+                contentType: action.contentType
             }
         case POST_ACTIVITY:
             return {

@@ -1,8 +1,14 @@
+@use "../variables"as v;
+
 .header {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: gray;
+    align-items: center;
+    // position: fixed;
+    background-color: v.$BgPrimary;
+
+
 
 }
 

@@ -17,6 +17,11 @@ module.exports = (sequelize) => {
             allowNull: false,
             set(v) {
                 this.setDataValue('name', v.toLowerCase());
+            },
+            get() {
+                const name = this.getDataValue('name');
+                const NAME_CAPITALIZED = name[0].toUpperCase() + name.slice(1);
+                return NAME_CAPITALIZED
             }
         },
         img: {
@@ -28,6 +33,11 @@ module.exports = (sequelize) => {
             allowNull: false,
             set(v) {
                 this.setDataValue('continent', v.toLowerCase());
+            },
+            get() {
+                const cont = this.getDataValue('continent');
+                const CONT_CAPITALIZED = cont[0].toUpperCase() + cont.slice(1);
+                return CONT_CAPITALIZED
             }
         },
         capital: {
@@ -35,6 +45,11 @@ module.exports = (sequelize) => {
             allowNull: false,
             set(v) {
                 this.setDataValue('capital', v.toLowerCase());
+            },
+            get() {
+                const capital = this.getDataValue('continent');
+                const CAP_CAPITALIZED = capital[0].toUpperCase() + capital.slice(1);
+                return CAP_CAPITALIZED
             }
         },
         subregion: {
