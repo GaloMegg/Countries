@@ -64,7 +64,8 @@ function searchCountry(x) {
             let country = await req.json()
             dispatch({
                 type: GET_COUNTRIES,
-                payload: country
+                payload: country,
+                contentType: "countries"
             })
         }
         catch (e) {

@@ -1,9 +1,19 @@
 @use "../../variables"as v;
 
 .nav {
-
     display: flex;
     flex-direction: column;
     background-color: v.$BgPrimary;
+    justify-content: flex-start;
     width: 25%;
+    min-height: 96vh;
+    align-items: center;
 }
+
+@import './nextprev';
+@import './reset';
+@import './az';
+@import './pop';
+@import './continents';
+@import './search';
+@import './countryActivity';

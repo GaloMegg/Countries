@@ -1,0 +1,7 @@
+@use "../../variables"as v;
+@import '../../mixins/btn';
+
+.az {
+    @include btn(v.$BgPrimary, v.$Primary, 70%, 0.4rem);
+    margin: 3%;
+}

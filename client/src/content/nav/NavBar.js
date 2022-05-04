@@ -19,6 +19,7 @@ const NavBar = () => {
         }
     }
     const searchBarHandler = (e) => {
+        disp(setPage(1))
         disp(searchCountry(e.target.value))
     }
 
@@ -99,26 +100,40 @@ const NavBar = () => {
     }
     return (
         <nav className='nav'>
-            <select name="" id="" onClick={contentHandler}>
+
+            <select name="" id="" className='countryActivities' onClick={contentHandler}>
                 <option value="countries">Countries</option>
                 <option value="activities">Activities</option>
             </select>
-            {contentType === "countries" && <input type="text" name="" id="" placeholder='&#128270; Buscar' onChange={searchBarHandler} />}
-            {contentType === "countries" && <select name="" id="" onChange={continentFilter}>
-                <option value="all">All</option>
-                <option value="europe">Europe</option>
-                <option value="asia">Asia</option>
-                <option value="africa">Africa</option>
-                <option value="americas">Americas</option>
-                <option value="oceania">Oceania</option>
-                <option value="antarctic">Antarctic</option>
+            {contentType === "countries" && <input className='search' type="text" name="" id="" placeholder='&#128270; Buscar' onChange={searchBarHandler} />}
+            {contentType === "countries" && <select className='continents' name="" id="" onChange={continentFilter}>
+                <option className='continent' value="all">All</option>
+                <option className='continent' value="europe">Europe</option>
+                <option className='continent' value="asia">Asia</option>
+                <option className='continent' value="africa">Africa</option>
+                <option className='continent' value="americas">Americas</option>
+                <option className='continent' value="oceania">Oceania</option>
+                <option className='continent' value="antarctic">Antarctic</option>
             </select>}
-            <button onClick={AZsort}>A-Z  {isOrderedAlph && <span>{alphabeticalOrder ? "ᐱ" : "ᐯ"}</span>}</button>
-            {contentType === "countries" ? <button onClick={popSort}>Population  {isOrderPop && <span>{popOrder ? "ᐱ" : "ᐯ"}</span>}</button> : <button onClick={difSort}>Dificulty  {isOrderDif && <span>{difOrder ? "ᐱ" : "ᐯ"}</span>}</button>}
-            <button onClick={resetHandler}>Reset</button>
+            {/* //!A-Z */}
+            <button className='az' onClick={AZsort}>A-Z  {isOrderedAlph && <span>{alphabeticalOrder ? "ᐱ" : "ᐯ"}</span>}</button>
 
-            {count > 1 && <button onClick={prevOnClick}>prev</button>}
-            {count < (countries.length / 10) && <button onClick={nextOnClick}>next</button>}
+
+            {/* //!POP */}
+            {contentType === "countries" ? <button className='pop' onClick={popSort}>Population  {isOrderPop && <span>{popOrder ? "ᐱ" : "ᐯ"}</span>}</button> : <button className='pop' onClick={difSort}>Dificulty  {isOrderDif && <span>{difOrder ? "ᐱ" : "ᐯ"}</span>}</button>}
+
+            {/* //!reset */}
+            <button className='reset' onClick={resetHandler}>Reset</button>
+            {/* //!nextPrev */}
+            <div className='nextprev'>
+                <div className='nextprev--shadow'>
+                    {count > 1 && <button className='nextprev--prev' onClick={prevOnClick}>🠐</button>}
+
+                </div>
+                <div className='nextprev--shadow'>
+                    {count < (countries.length / 10) && <button className='nextprev--next' onClick={nextOnClick}>🠒</button>}
+                </div>
+            </div>
 
         </nav>
     )

@@ -3,12 +3,14 @@ import { useParams } from 'react-router-dom'
 import ActivityDetail from './ActivityDetail'
 import CountryDetail from './CountryDetail'
 const CountryDetailContainer = () => {
+    const [loading, setLoading] = useState(true)
     const [country, setCountry] = useState({})
     const { id } = useParams()
     useEffect(() => {
         fetchingData(id)
         return () => {
             setCountry({})
+            setLoading(true)
         }
     }, [id])
     console.log(country)
@@ -17,12 +19,9 @@ const CountryDetailContainer = () => {
         let req = await fetch(url)
         let data = await req.json()
         setCountry(data)
+        setLoading(false)
     }
-    return (
-        <section>
-            {id.length === 3 ? <CountryDetail {...country} /> : <ActivityDetail {...country} />}
-        </section>
-    )
+    { return loading ? <h1>LOADING</h1> : <section>{id.length === 3 ? <CountryDetail {...country} /> : <ActivityDetail {...country} />}   </section> }
 }
 
 export default CountryDetailContainer

@@ -1,0 +1,27 @@
+@use "../../variables"as v;
+@import '../../mixins/btn';
+
+.nextprev {
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+    margin: 2%;
+
+    .nextprev--shadow {
+        width: 45%;
+        display: flex;
+        align-items: center;
+
+        .nextprev--prev {
+            @include btn(v.$BgPrimary, v.$Primary, 100%, 2rem);
+            font-weight: bold;
+        }
+
+        .nextprev--next {
+            @include btn(v.$BgPrimary, v.$Primary, 100%, 2rem);
+            font-weight: bold;
+
+        }
+    }
+
+}
