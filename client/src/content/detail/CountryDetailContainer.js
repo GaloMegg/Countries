@@ -21,7 +21,7 @@ const CountryDetailContainer = () => {
         setCountry(data)
         setLoading(false)
     }
-    { return loading ? <h1>LOADING</h1> : <section>{id.length === 3 ? <CountryDetail {...country} /> : <ActivityDetail {...country} />}   </section> }
+    { return loading ? <h1>LOADING</h1> : <>{id.length === 3 ? <CountryDetail {...country} /> : <ActivityDetail {...country} />}   </> }
 }
 
 export default CountryDetailContainer

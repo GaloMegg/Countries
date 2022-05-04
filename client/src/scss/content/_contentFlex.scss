@@ -1,6 +1,8 @@
 .content {
     display: flex;
+    justify-content: center
 }
 
 @import "nav/navFlex";
 @import "cards/cards";
+@import 'details/details';

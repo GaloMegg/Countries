@@ -66,13 +66,13 @@ const NavBar = () => {
     const difSort = () => {
         setIsOrderedAlph(false)
         setIsOrderPop(false)
-        let sortedArr = popOrder ? countries.sort((a, b) => {
-            if (a.difficulty < b.difficulty) return -1
-            if (a.difficulty > b.difficulty) return 1
-            return 0
-        }) : countries.sort((a, b) => {
+        let sortedArr = difOrder ? countries.sort((a, b) => {
             if (a.difficulty > b.difficulty) return -1
             if (a.difficulty < b.difficulty) return 1
+            return 0
+        }) : countries.sort((a, b) => {
+            if (a.difficulty < b.difficulty) return -1
+            if (a.difficulty > b.difficulty) return 1
             return 0
         })
         disp(sortedCountries(sortedArr))
@@ -120,7 +120,7 @@ const NavBar = () => {
 
 
             {/* //!POP */}
-            {contentType === "countries" ? <button className='pop' onClick={popSort}>Population  {isOrderPop && <span>{popOrder ? "ᐱ" : "ᐯ"}</span>}</button> : <button className='pop' onClick={difSort}>Dificulty  {isOrderDif && <span>{difOrder ? "ᐱ" : "ᐯ"}</span>}</button>}
+            {contentType === "countries" ? <button className='pop' onClick={popSort}>Population  {isOrderPop && <span>{popOrder ? "ᐱ" : "ᐯ"}</span>}</button> : <button className='pop' onClick={difSort}>Difficulty{isOrderDif && <span>{difOrder ? "ᐱ" : "ᐯ"}</span>}</button>}
 
             {/* //!reset */}
             <button className='reset' onClick={resetHandler}>Reset</button>

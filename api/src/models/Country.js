@@ -82,7 +82,7 @@ module.exports = (sequelize) => {
                 this.setDataValue('name', v.toLowerCase());
             }
         },
-        dificulty: {
+        difficulty: {
             type: DataTypes.INTEGER,
             allowNull: false,
             validate: {

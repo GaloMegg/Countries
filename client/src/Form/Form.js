@@ -12,7 +12,7 @@ const Form = () => {
 
     const [countryError, setCountryError] = useState(false)
     const [nameError, setNameError] = useState(false)
-    const [dificultyError, setDificultyError] = useState(false)
+    const [difficultyError, setDifficultyError] = useState(false)
     const [seasonError, setSeasonError] = useState(false)
     const [durationError, setDurationError] = useState(false)
     //TODO\p{L}
@@ -22,10 +22,10 @@ const Form = () => {
         e.preventDefault()
         if (formInfo.countries.length === 0) { setCountryError(true) }
         if (!formInfo.name || formInfo.name?.length > 255 || formInfo.name?.length === 0 || !formInfo.name.match(/^[A-Za-z]+$/)) { setNameError(true) }
-        if (formInfo.dificulty < 0 || formInfo.dificulty > 5) { setDificultyError(true) }
+        if (formInfo.difficulty < 0 || formInfo.difficulty > 5) { setDifficultyError(true) }
         if (!formInfo.season) { setSeasonError(true) }
         if (!formInfo.duration) { setDurationError(true) }
-        if (formInfo.countries.length > 0 && formInfo.name.length <= 255 && formInfo.name.match(/^[A-Za-z]+$/) && (formInfo.dificulty >= 0 && formInfo.dificulty <= 5) && formInfo.season && formInfo.duration) {
+        if (formInfo.countries.length > 0 && formInfo.name.length <= 255 && formInfo.name.match(/^[A-Za-z]+$/) && (formInfo.difficulty >= 0 && formInfo.difficulty <= 5) && formInfo.season && formInfo.duration) {
             console.log("creada")
             dispatch(postActivity(formInfo))
         }
@@ -48,16 +48,19 @@ const Form = () => {
         setDurationError(false)
         if (isNaN(e.key) && e.key !== "Backspace") e.preventDefault()
     }
-    //!Dificulty
-    function dificultyVal(e) {
-        setDificultyError(false)
+    //!difficulty
+    function difficultyVal(e) {
+        setDifficultyError(false)
         if (e.target.value.length >= 1 && e.key !== "Backspace") {
             e.preventDefault()
         }
         if ((isNaN(e.key) && e.key !== "Backspace") || e.key > 5 || e.key < 1) e.preventDefault()
     }
     //!Countries
-    const countriesClick = () => { setCountrySelect(false) }
+    const countriesClick = () => {
+        dispatch(getCountries())
+        setCountrySelect(false)
+    }
     const countriesHandler = (e) => {
         setCountrySelect(false)
         setCountryError(false)
@@ -94,8 +97,8 @@ const Form = () => {
             <input type="text" placeholder='Name' name="name" className={nameError ? "inputError" : "input"} onChange={handleChanges} onKeyDown={handleNameKey} onBlur={handleChanges} />
             {durationError && <p className='error'>The duration cannot be empty</p>}
             <input type="text" placeholder='Duration' name="duration" className='' onKeyDown={durationHandler} onChange={handleChanges} onBlur={handleChanges} />
-            {dificultyError && <p className='error'>The dificulty must be a number between 1 and 5</p>}
-            <input type="text" placeholder='Dificulty' name='dificulty' className='' onKeyDown={dificultyVal} onChange={handleChanges} onBlur={handleChanges} />
+            {difficultyError && <p className='error'>The difficulty must be a number between 1 and 5</p>}
+            <input type="text" placeholder='difficulty' name='difficulty' className='' onKeyDown={difficultyVal} onChange={handleChanges} onBlur={handleChanges} />
             {seasonError && <p className='error'>The activity must have a season</p>}
             <select name="season" id="season" onChange={seasonSelectHandler} onBlur={seasonSelectHandler} onClick={seasonSelectHandler}>
                 {seasonSelect && <option value="">Season</option>}
