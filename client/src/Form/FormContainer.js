@@ -7,9 +7,9 @@ const FormContainer = () => {
 
     }
     return (
-        <div>
+        <>
             <Form formOnSubmit={formOnSubmit} />
-        </div>
+        </>
     )
 }
 

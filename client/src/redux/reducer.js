@@ -3,7 +3,7 @@ import { SORTED_COUNTRIES, GET_COUNTRIES, POST_ACTIVITY, COUNT_COUNTRIES, SET_CO
 
 const initialState = {
     countries: [],
-    activities: [],
+    activity: {},
     contentType: 'countries',
     count: 1,
     countriesPerPage: 9,
@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
         case POST_ACTIVITY:
             return {
                 ...state,
-                activities: [...state.activities, action.payload]
+                activities: action.payload
             }
         case SORTED_COUNTRIES:
             return {

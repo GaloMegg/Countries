@@ -2,7 +2,7 @@
 
 .card {
     margin: 2%;
-    width: 25%;
+    width: 190px;
     border: 1px solid rgba(204, 204, 204, 0);
     padding: 4%;
     border-radius: 16px;
@@ -19,22 +19,38 @@
     }
 
     .card__title {
-        font-size: 0.8rem;
+        font-size: 1.5rem;
         font-weight: lighter;
         color: v.$White;
+        letter-spacing: 0.2rem;
+        font-family: v.$font;
     }
 
     .card__data {
-        font-size: 0.7rem;
+        font-family: v.$font;
+
+        font-size: 1.3rem;
         font-weight: lighter;
         color: v.$White;
     }
 
-    &:hover {
-        transform: scale(1.05);
+    transition: background-color 2s,
+    transform 8s;
+    ;
 
-        .card__title {
-            font-size: 1rem;
+
+    &:hover {
+        transform: scale(1.02);
+        background-color: v.$White;
+
+        .card__data,
+        .card__title,
+        .card__A-name,
+        .card__A-diff,
+        .card__A-duration,
+        .card__A-countries,
+        .card__A-season {
+            color: v.$BgSecondary;
         }
     }
 }

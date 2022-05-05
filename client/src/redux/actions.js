@@ -33,6 +33,7 @@ function postActivity(x) {
                 body: JSON.stringify(x)
             })
             let activity = await req.json()
+            console.log(activity)
             dispatch({
                 type: POST_ACTIVITY,
                 payload: activity
@@ -41,6 +42,12 @@ function postActivity(x) {
         catch (e) {
             alert(e)
         }
+    }
+}
+function postClean() {
+    return {
+        type: POST_ACTIVITY,
+        payload: {}
     }
 }
 function getActivities() {
@@ -119,6 +126,7 @@ module.exports = {
     filteredCountry,
     countCountries,
     setPage,
+    postClean,
     getActivities,
     setCountriesPage,
     GET_COUNTRIES,

@@ -1,8 +1,10 @@
 .content {
     display: flex;
-    justify-content: center
+    justify-content: center;
+
 }
 
 @import "nav/navFlex";
 @import "cards/cards";
 @import 'details/details';
+@import 'form/formFlex';

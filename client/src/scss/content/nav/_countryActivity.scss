@@ -4,8 +4,10 @@
 .countryActivities {
     @include btn(v.$BgPrimary, v.$Primary, 70%, 0.4rem);
     margin: 3%;
+
     &>option {
         font-family: v.$font;
-        font-size: 1.2rem;
+        font-size: 1.6rem;
+
     }
 }

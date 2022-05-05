@@ -1,0 +1,28 @@
+@use '../../variables'as v;
+
+.card {
+
+    .card__A-name,
+    .card__A-diff,
+    .card__A-duration,
+    .card__A-countries,
+    .card__A-season {
+        color: v.$White;
+        font-family: v.$font;
+        font-size: 1.2rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .card__A-img-flex {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        width: 80%;
+
+        .card__A-img {
+            width: 20%;
+        }
+    }
+
+}

@@ -1,7 +1,7 @@
 @use "../../variables"as v;
 
 .cards {
-    width: 75%;
+    width: 85%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -10,3 +10,4 @@
 }
 
 @import 'card';
+@import 'activity';

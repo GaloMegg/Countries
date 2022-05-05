@@ -1,4 +1,5 @@
 @use '../../variables'as v;
+@import '../../mixins/btn';
 
 .country__Detail {
     display: flex;
@@ -21,7 +22,7 @@
         }
 
         .country__Detail--img {
-            width: 100%;
+            width: 60%;
             border-radius: 16px;
         }
 
@@ -29,21 +30,51 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: space-around;
             width: 100%;
             text-align: center;
             background-color: v.$BgPrimaryTranslucid;
             height: 100%;
+
+            .link__maps {
+                width: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .btn__maps {
+                    @include btn(v.$BgPrimary, v.$Primary, 100%, 0.4rem);
+                    cursor: pointer;
+                }
+            }
+
+            &>* {
+                font-family: v.$font;
+                margin: 1%;
+            }
+
+            &>p {
+                font-size: 1.5rem;
+            }
+
+            &>h2 {
+                font-size: 2rem;
+            }
         }
     }
 
     .country__Detail--activities {
         background-color: v.$BgPrimaryTranslucid;
-        margin: 2%;
+        margin: 3%;
         text-align: center;
         display: flex;
         flex-direction: column;
         width: 100%;
+
+        .country__Detail--title {
+            font-family: v.$font;
+            font-size: 1.8rem;
+        }
 
         .country__Detail--activities-try {
             display: flex;
@@ -52,6 +83,23 @@
             width: 100%;
             text-align: center;
             height: 100%;
+
+            &>p,
+            a {
+                font-family: v.$font;
+                letter-spacing: 0.2rem;
+                padding: 1%;
+                border: 1px black solid;
+                width: 25%;
+            }
+
+            .TH {
+                font-size: 1rem;
+                background-color: v.$BgSecondary;
+                font-family: v.$font;
+                padding: 1%;
+                color: v.$BgPrimary;
+            }
         }
     }
 }
