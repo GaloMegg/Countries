@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
         case POST_ACTIVITY:
             return {
                 ...state,
-                activities: action.payload
+                activity: action.payload
             }
         case SORTED_COUNTRIES:
             return {

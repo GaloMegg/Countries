@@ -17,7 +17,6 @@ const Form = () => {
     const [seasonError, setSeasonError] = useState(false)
     const [durationError, setDurationError] = useState(false)
     //TODO CleanUp
-    console.log(activity)
     useEffect(() => {
         return () => {
             setCrated(false)
@@ -39,7 +38,6 @@ const Form = () => {
             form.reset()
             setSeasonSelect(true)
             setCountrySelect(true)
-
             setCrated(true)
         }
         return
@@ -71,9 +69,17 @@ const Form = () => {
         if ((isNaN(e.key) && e.key !== "Backspace") || e.key > 5 || e.key < 1) e.preventDefault()
     }
     //!Countries
-    const countriesClick = () => {
-        dispatch(getCountries())
+    const countriesClick = (e) => {
         setCountrySelect(false)
+        setCountryError(false)
+        let val = e.target.value
+        if (e.target.value === "" || !e.target.value) { return }
+        let count = countries.find(e => e.name === val)
+        if (formInfo.countries.includes(count.id)) { return }
+        setFormInfo({
+            ...formInfo,
+            countries: [...formInfo.countries, count.id]
+        })
     }
     const countriesHandler = (e) => {
         setCountrySelect(false)
@@ -130,18 +136,19 @@ const Form = () => {
                     return 0
                 }).map(e => { return <option key={e.id}>{e.name}</option> })}
             </select>
-            <div>
+            <div className='form__countries'>
                 {formInfo.countries.map(e => {
                     let filteredCountry = countries.find(a => a.id === e)
                     return (
-                        <div key={e}>
-                            <p >{e.toUpperCase()}({filteredCountry?.name})</p>
-                            <button value={e} onClick={deleteCountry}>X</button>
+                        <div key={e} className="form__countries-flex">
+                            <img src={filteredCountry.img} alt="" className='form__countries-try' />
+                            <button value={e} onClick={deleteCountry} className="form__countries-x">X</button>
                         </div>)
                 })}
             </div>
             <button type="submit" disabled={false}> Create</button>
-            {crated && <><h2> Activity Created</h2> <Link to={`/home/details/${activity.id}`}> Link to the Activity</ Link> </>}
+            {crated && <h2 className='activityCreated'> Activity Created</h2>}
+            {Object.keys(activity).length > 0 && < Link to={`/home/details/${activity.id}`} className='activityCreated__link'> Link to the Activity</ Link>}
         </form >
     )
 }
