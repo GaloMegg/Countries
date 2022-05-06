@@ -1,0 +1,15 @@
+@use '../../variables' as v;
+
+.footer {
+    width: 100%;
+    background-color: v.$BgSecondary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>p,
+    a {
+        color: v.$White;
+        padding: 0.3%;
+    }
+}

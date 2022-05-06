@@ -1,10 +1,13 @@
 .content {
     display: flex;
     justify-content: center;
-
+    max-width: 100%;
+    min-height: 97vh;
 }
 
 @import "nav/navFlex";
 @import "cards/cards";
 @import 'details/details';
 @import 'form/formFlex';
+@import 'footer/footer';
+@import 'loader';

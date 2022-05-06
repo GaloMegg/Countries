@@ -1,11 +1,11 @@
-@use '../../variables'as v;
+@use '../../variables' as v;
 @import '../../mixins/btn';
 
 .country__Detail {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 75%;
+    width: 100%;
     align-items: center;
     margin: 3%;
 

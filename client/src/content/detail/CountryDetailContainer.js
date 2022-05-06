@@ -13,7 +13,6 @@ const CountryDetailContainer = () => {
             setLoading(true)
         }
     }, [id])
-    console.log(country, id)
     async function fetchingData(id) {
         let url = id.length === 3 ? `http://localhost:3001/countries/${id}` : `http://localhost:3001/activity?id=${id}`
         let req = await fetch(url)

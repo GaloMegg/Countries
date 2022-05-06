@@ -5,6 +5,8 @@ import Header from '../header/Header'
 import { Route, Routes } from 'react-router-dom'
 import Form from '../Form/Form'
 import CountryDetailContainer from './detail/CountryDetailContainer'
+import Footer from './Footer/Footer'
+
 const Content = () => {
     return (
         <>
@@ -16,6 +18,7 @@ const Content = () => {
                     <Route path="/details/:id" element={<CountryDetailContainer />} />
                 </Routes>
             </section>
+            <Footer />
         </>
     )
 }

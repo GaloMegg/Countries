@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getCountries } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import CardMap from './CardMap'
+import Loader from '../Loader'
 
 const CardsContainer = () => {
     const dis = useDispatch()
@@ -14,7 +15,7 @@ const CardsContainer = () => {
     const lastIndex = count * countriesPerPage
     const firstIndex = lastIndex - countriesPerPage
     const current = countries?.slice(firstIndex, lastIndex)
-    { return loading ? <h1>Loading</h1> : < article className='cards' > <CardMap countries={current} contentType={contentType} /></article > }
+    { return loading ? <Loader /> : < article className='cards' > <CardMap countries={current} contentType={contentType} /></article > }
 
 }
 
