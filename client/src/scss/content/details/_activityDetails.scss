@@ -1,0 +1,36 @@
+@use '../../variables' as v;
+@import '../../mixins/btn';
+
+.activity__details {
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+    align-items: center;
+    margin: 3%;
+    border: 1px solid v.$BgSecondary;
+    border-radius: 16px;
+
+    .activity__details--info {
+
+        &>p {
+            font-family: v.$font;
+            font-size: 2rem;
+        }
+    }
+
+    .activity__images {
+        width: 50%;
+        display: flex;
+        justify-content: space-around;
+
+        .activity__images--link {
+
+            width: 20%;
+
+            .activity__images--try {
+                width: 100%;
+            }
+        }
+    }
+
+}

@@ -1,4 +1,21 @@
-@use '../../variables'as v;
+@use '../../variables' as v;
+@import '../../mixins/btn';
+
+.noActivities__flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .noActivities {
+        font-family: v.$font;
+        font-size: 3rem;
+        letter-spacing: 0.1rem;
+    }
+
+    .noActivities-CreateOne {
+        @include btn(v.$BgPrimary, v.$Primary, 50%, 0.4rem);
+    }
+}
 
 .card {
 
