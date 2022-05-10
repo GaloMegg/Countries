@@ -9,7 +9,7 @@ const NavBar = () => {
     const [difOrder, setDifOrder] = useState(true)
     const [isOrderDif, setIsOrderDif] = useState(false)
     const disp = useDispatch()
-    const { countries, count, countriesPerPage, contentType } = useSelector(state => state)
+    const { countries, count, countriesPerPage, contentType, pages } = useSelector(state => state)
     const contentHandler = (e) => {
         if (e.target.value === "countries") {
             disp(getCountries())
@@ -106,7 +106,7 @@ const NavBar = () => {
                 <option value="activities">Activities</option>
             </select>
             {contentType === "countries" && <input className='search' type="text" name="" id="" placeholder='&#128270; Buscar' onChange={searchBarHandler} />}
-            {contentType === "countries" && <select className='continents' name="" id="" onChange={continentFilter}>
+            {contentType === "countries" && <select className='continents' name="" id="" onClick={continentFilter}>
                 <option className='continent' value="all">All</option>
                 <option className='continent' value="europe">Europe</option>
                 <option className='continent' value="asia">Asia</option>
@@ -128,13 +128,13 @@ const NavBar = () => {
             <div className='nextprev'>
                 <div className='nextprev--shadow'>
                     {count > 1 && <button className='nextprev--prev' onClick={prevOnClick}>🠐</button>}
-
                 </div>
                 <div className='nextprev--shadow'>
                     {count < (countries.length / 10) && <button className='nextprev--next' onClick={nextOnClick}>🠒</button>}
                 </div>
             </div>
 
+            {pages > 1 && <p className='nextprev--currentPages'>{count}|{pages}</p>}
         </nav>
     )
 }

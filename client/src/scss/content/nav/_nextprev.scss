@@ -1,4 +1,4 @@
-@use "../../variables"as v;
+@use "../../variables" as v;
 @import '../../mixins/btn';
 
 .nextprev {
@@ -24,4 +24,10 @@
         }
     }
 
+}
+
+.nextprev--currentPages {
+    font-family: v.$font;
+    font-size: 1.2rem;
+    margin: 1%;
 }

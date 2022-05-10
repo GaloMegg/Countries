@@ -6,7 +6,6 @@ const router = Router();
 
 router.get('/:id', async (req, res, next) => {
     const { id } = req.params;
-    console.log(id);
     try {
         const country = await Country.findAll({
             where: {

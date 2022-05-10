@@ -4,28 +4,31 @@ const SORTED_COUNTRIES = 'SORTED_COUNTRIES';
 const COUNT_COUNTRIES = 'COUNT_COUNTRIES';
 const SET_COUNTRIES_PAGE = 'SET_COUNTRIES_PAGE'
 const SET_PAGE = 'SET_PAGE'
+const SET_COUNT_PAGES = 'SET_COUNT_PAGES';
+const INTERNAL_ERROR = 'INTERNAL_ERROR'
 
 function getCountries(x) {
     if (x) { return { type: GET_COUNTRIES, payload: x } }
     return async (dispatch) => {
         try {
-            let req = await fetch('http://localhost:3001/countries')
+            let req = await fetch(`${process.env.REACT_APP_EXPRESS}countries`)
             let countries = await req.json()
             dispatch({
                 type: GET_COUNTRIES,
                 payload: countries,
-                contentType: "countries"
+                contentType: "countries",
+                isFiltered: false
             })
         }
         catch (e) {
-            console.log(e)
+            dispatch({ type: INTERNAL_ERROR, payload: true })
         }
     }
 }
 function postActivity(x) {
     return async (dispatch) => {
         try {
-            let req = await fetch('http://localhost:3001/activity', {
+            let req = await fetch(`${process.env.REACT_APP_EXPRESS}activity`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -33,14 +36,14 @@ function postActivity(x) {
                 body: JSON.stringify(x)
             })
             let activity = await req.json()
-            console.log(activity)
             dispatch({
                 type: POST_ACTIVITY,
                 payload: activity
             })
         }
         catch (e) {
-            alert(e)
+            dispatch({ type: INTERNAL_ERROR, payload: true })
+
         }
     }
 }
@@ -53,7 +56,7 @@ function postClean() {
 function getActivities() {
     return async dispatch => {
         try {
-            let req = await fetch('http://localhost:3001/activity')
+            let req = await fetch(`${process.env.REACT_APP_EXPRESS}activity`)
             let activities = await req.json()
             dispatch({
                 type: GET_COUNTRIES,
@@ -61,37 +64,46 @@ function getActivities() {
                 contentType: "activities"
             })
         }
-        catch (e) { console.log(e) }
+        catch (e) {
+            dispatch({ type: INTERNAL_ERROR, payload: true })
+
+        }
     }
 }
 function searchCountry(x) {
     return async (dispatch) => {
         try {
-            let req = await fetch(`http://localhost:3001/countries?&name=${x}`)
+            let req = await fetch(`${process.env.REACT_APP_EXPRESS}countries?&name=${x}`)
             let country = await req.json()
             dispatch({
                 type: GET_COUNTRIES,
                 payload: country,
-                contentType: "countries"
+                contentType: "countries",
+                isFiltered: true
             })
         }
         catch (e) {
-            console.log(e)
+            dispatch({ type: INTERNAL_ERROR, payload: true })
+
         }
     }
 }
 function filteredCountry(x) {
     return async dispatch => {
         try {
-            let req = await fetch(`http://localhost:3001/countries/filter/${x}`)
+            let req = await fetch(`${process.env.REACT_APP_EXPRESS}countries/filter/${x}`)
             let country = await req.json()
             dispatch({
                 type: GET_COUNTRIES,
                 payload: country,
-                contentType: "countries"
+                contentType: "countries",
+                isFiltered: true
             })
         }
-        catch (e) { console.log(e) }
+        catch (e) {
+            dispatch({ type: INTERNAL_ERROR, payload: true })
+
+        }
     }
 }
 function sortedCountries(x) {
@@ -118,6 +130,12 @@ function setPage(x) {
         payload: x
     }
 }
+function setCountPages(x) {
+    return {
+        type: SET_COUNT_PAGES,
+        payload: x
+    }
+}
 module.exports = {
     getCountries,
     postActivity,
@@ -129,10 +147,13 @@ module.exports = {
     postClean,
     getActivities,
     setCountriesPage,
+    setCountPages,
     GET_COUNTRIES,
     POST_ACTIVITY,
+    SET_COUNT_PAGES,
     SORTED_COUNTRIES,
     COUNT_COUNTRIES,
     SET_PAGE,
-    SET_COUNTRIES_PAGE
+    SET_COUNTRIES_PAGE,
+    INTERNAL_ERROR
 }

@@ -9,7 +9,7 @@ const ActivityCard = ({ countries, difficulty, duration, name, season, id }) => 
             <p className='card__A-duration'>Duration: {duration}</p>
             <p className='card__A-countries'>Countries: </p>
             <div className='card__A-img-flex'>
-                {countries?.map((e) => <img className='card__A-img' src={e.img} key={e.id} />)}
+                {countries?.map((e) => <img className='card__A-img' alt={`${e.name}'s flag`} src={e.img} key={e.id} />)}
             </div>
             <p className='card__A-season'>Season: {season[0].toUpperCase() + season.slice(1)}</p>
         </Link >

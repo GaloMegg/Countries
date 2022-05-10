@@ -9,8 +9,8 @@ const Form = () => {
         countries: []
     })
     const dispatch = useDispatch()
-    const { countries, activity } = useSelector(state => state)
-    const [crated, setCrated] = useState(false)
+    const { countries, activity, internalError } = useSelector(state => state)
+    const [created, setCrated] = useState(false)
     const [countryError, setCountryError] = useState(false)
     const [nameError, setNameError] = useState(false)
     const [difficultyError, setDifficultyError] = useState(false)
@@ -18,22 +18,22 @@ const Form = () => {
     const [durationError, setDurationError] = useState(false)
     //TODO CleanUp
     useEffect(() => {
+        dispatch(getCountries())
         return () => {
             setCrated(false)
             dispatch(postClean())
         }
-    }, [])
+    }, [dispatch])
     //!OnSubmit
     const submitForm = (e) => {
         e.preventDefault()
         if (formInfo.countries.length === 0) { setCountryError(true) }
-        if (!formInfo.name || formInfo.name?.length > 255 || formInfo.name?.length === 0 || !formInfo.name.match(/^[A-Za-z]+$/)) { setNameError(true) }
+        if (!formInfo.name || formInfo.name?.length > 255 || formInfo.name?.length === 0 || !formInfo.name.match(/^[a-zA-Z\s]*$/)) { setNameError(true) }
         if (formInfo.difficulty < 0 || formInfo.difficulty > 5) { setDifficultyError(true) }
         if (!formInfo.season) { setSeasonError(true) }
         if (!formInfo.duration) { setDurationError(true) }
-        if (formInfo.countries.length > 0 && formInfo.name.length <= 255 && formInfo.name.match(/^[A-Za-z]+$/) && (formInfo.difficulty >= 0 && formInfo.difficulty <= 5) && formInfo.season && formInfo.duration) {
+        if (formInfo.countries.length > 0 && formInfo.name.length <= 255 && formInfo.name.match(/^[a-zA-Z\s]*$/) && (formInfo.difficulty >= 0 && formInfo.difficulty <= 5) && formInfo.season && formInfo.duration) {
             let form = document.form
-            console.log("creada")
             dispatch(postActivity(formInfo))
             form.reset()
             setSeasonSelect(true)
@@ -52,7 +52,7 @@ const Form = () => {
     //!Name
     const handleNameKey = (e) => {
         setNameError(false)
-        if (!isNaN(Number(e.key)) && e.key !== "Backspace") { e.preventDefault() }
+        if (!isNaN(Number(e.key)) && e.key !== "Backspace" && e.key !== " ") { e.preventDefault() }
         if (e.target.value.length > 255) { e.preventDefault() }
     }
     //!Duration
@@ -147,7 +147,8 @@ const Form = () => {
                 })}
             </div>
             <button type="submit" disabled={false}> Create</button>
-            {crated && <h2 className='activityCreated'> Activity Created</h2>}
+            {created && !internalError && <h2 className='activityCreated'> Activity Created</h2>}
+            {internalError && created && <h2 className='activityError'>Try Again Later</h2>}
             {Object.keys(activity).length > 0 && < Link to={`/home/details/${activity.id}`} className='activityCreated__link'> Link to the Activity</ Link>}
         </form >
     )

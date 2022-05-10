@@ -63,10 +63,6 @@ module.exports = (sequelize) => {
         area: {
             type: DataTypes.FLOAT,
             allowNull: true,
-        },
-        currency: {
-            type: DataTypes.STRING,
-            allowNull: true,
         }
     });
     sequelize.define('activity', {

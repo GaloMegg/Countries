@@ -12,8 +12,8 @@ const ActivityDetail = ({ difficulty, duration, name, season, countries }) => {
                     <p>Season:{season} </p>
                 </div>
                 <div className='activity__images'>
-                    {countries?.map(e => <Link to={`/home/details/${e.id}`} className='activity__images--link'>
-                        <img src={e.img} key={e.id} className='activity__images--try' />
+                    {countries?.map(e => <Link to={`/home/details/${e.id}`} className='activity__images--link' key={e.id}>
+                        <img src={e.img} alt={`${e.name} country flag redirect`} className='activity__images--try' />
                     </Link>
                     )}
                 </div>

@@ -133,7 +133,7 @@ Se debe desarrollar una aplicación de React/Redux que contenga las siguientes p
 
 El modelo de la base de datos deberá tener las siguientes entidades (Aquellas propiedades marcadas con asterísco deben ser obligatorias):
 
-- [ ] País con las siguientes propiedades:
+- [x] País con las siguientes propiedades:
   - ID (Código de 3 letras) \*
   - Nombre \*
   - Imagen de la bandera \*
@@ -142,7 +142,7 @@ El modelo de la base de datos deberá tener las siguientes entidades (Aquellas p
   - Subregión
   - Área
   - Población
-- [ ] Actividad Turística con las siguientes propiedades:
+- [x] Actividad Turística con las siguientes propiedades:
   - ID
   - Nombre
   - Dificultad (Entre 1 y 5)
@@ -157,17 +157,17 @@ Se debe desarrollar un servidor en Node/Express con las siguientes rutas:
 
 **IMPORTANTE**: No está permitido utilizar los filtrados, ordenamientos y paginados brindados por la API externa, todas estas funcionalidades tienen que implementarlas ustedes.
 
-- [ ] **GET /countries**:
+- [x] **GET /countries**:
   - En una primera instancia deberán traer todos los países desde restcountries y guardarlos en su propia base de datos y luego ya utilizarlos desde allí (Debe almacenar solo los datos necesarios para la ruta principal)
   - Obtener un listado de los paises.
-- [ ] **GET /countries/{idPais}**:
+- [x] **GET /countries/{idPais}**:
   - Obtener el detalle de un país en particular
   - Debe traer solo los datos pedidos en la ruta de detalle de país
   - Incluir los datos de las actividades turísticas correspondientes
-- [ ] **GET /countries?name="..."**:
+- [x] **GET /countries?name="..."**:
   - Obtener los países que coincidan con el nombre pasado como query parameter (No necesariamente tiene que ser una matcheo exacto)
   - Si no existe ningún país mostrar un mensaje adecuado
-- [ ] **POST /activity**:
+- [x] **POST /activity**:
   - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de actividad turística por body
   - Crea una actividad turística en la base de datos
 
