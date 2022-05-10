@@ -13,6 +13,12 @@
         font-size: 1.6rem;
     }
 
+    .activityError {
+        font-family: v.$font;
+        color: v.$Error;
+        font-size: 1.6rem;
+    }
+
     .activityCreated__link {
         font-family: v.$font;
         font-size: 1.6rem;
@@ -59,7 +65,7 @@
 
             .form__countries-x {
                 @include btn(v.$Error, v.$BgPrimary, 70%, 1rem);
-               letter-spacing: 0rem;
+                letter-spacing: 0rem;
             }
 
 
