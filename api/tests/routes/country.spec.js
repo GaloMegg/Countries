@@ -9,8 +9,8 @@ const country = {
   id: "arg",
   name: 'Argentina',
   img: "abc.jpg",
-  continent: "America",
-  capital: "CABA"
+  continent: "Americas",
+  capital: "Buenos Aires"
 };
 
 describe('Country routes', () => {
@@ -21,11 +21,11 @@ describe('Country routes', () => {
   beforeEach(() => Country.sync({ force: true })
     .then(() => Country.create(country)));
   describe('GET /countries', () => {
-    it('should get 200', () =>
+    it('Should get 200', () =>
       agent.get('/countries').expect(200)
         .expect('Content-Type', /json/)
     );
-    it('should get the country that matches the query', () =>
+    it('Should get the country that matches the query', () =>
       agent.get('/countries?name=argentina').expect(200)
         .expect('Content-Type', /json/)
         .expect(function (res) {
@@ -33,15 +33,30 @@ describe('Country routes', () => {
           expect(res.body).to.have.length(1);
         })
     );
-    it("shouldn't get the country that matches the query", () =>
-      agent.get('/countries?name=argentinaaaa').expect(200)
+    it("Shouldn't get the country that matches the query", () =>
+      agent.get('/countries?name=Galolandia').expect(200)
         .expect('Content-Type', /json/)
         .expect(function (res) {
           expect(res.body).to.have.length(0);
         })
     );
-    it("ruta que no existe", () =>
-      agent.get('/Bocajuniors').expect(404)
+    it("Should get the country that matches the param", () =>
+      agent.get('/countries/arg').expect(200)
+        .expect('Content-Type', /json/)
+        .expect(function (res) {
+          expect(res.body.name).to.eql('Argentina')
+        })
+    );
+    it("Should get only the countries that matches the continent", () =>
+      agent.get('/countries/filter/americas').expect(200)
+        .expect('Content-Type', /json/)
+        .expect(function (res) {
+          expect(res.body).to.have.length(1);
+          expect(res.body[0].name).to.eql('Argentina')
+        })
+    );
+    it("Shouldn't find the route", () =>
+      agent.get('/Galolandia').expect(404)
     );
 
   });
