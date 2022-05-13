@@ -6,7 +6,7 @@ const SET_COUNTRIES_PAGE = 'SET_COUNTRIES_PAGE'
 const SET_PAGE = 'SET_PAGE'
 const SET_COUNT_PAGES = 'SET_COUNT_PAGES';
 const INTERNAL_ERROR = 'INTERNAL_ERROR'
-
+const SET_LOADING = 'SET_LOADING'
 function getCountries(x) {
     if (x) { return { type: GET_COUNTRIES, payload: x } }
     return async (dispatch) => {
@@ -17,7 +17,8 @@ function getCountries(x) {
                 type: GET_COUNTRIES,
                 payload: countries,
                 contentType: "countries",
-                isFiltered: false
+                isFiltered: false,
+                loading: false
             })
         }
         catch (e) {
@@ -61,7 +62,9 @@ function getActivities() {
             dispatch({
                 type: GET_COUNTRIES,
                 payload: activities,
-                contentType: "activities"
+                contentType: "activities",
+                isFiltered: true,
+                loading: false
             })
         }
         catch (e) {
@@ -79,7 +82,8 @@ function searchCountry(x) {
                 type: GET_COUNTRIES,
                 payload: country,
                 contentType: "countries",
-                isFiltered: true
+                isFiltered: true,
+                loading: false
             })
         }
         catch (e) {
@@ -97,7 +101,8 @@ function filteredCountry(x) {
                 type: GET_COUNTRIES,
                 payload: country,
                 contentType: "countries",
-                isFiltered: true
+                isFiltered: true,
+                loading: false
             })
         }
         catch (e) {
@@ -109,7 +114,8 @@ function filteredCountry(x) {
 function sortedCountries(x) {
     return {
         type: SORTED_COUNTRIES,
-        payload: x
+        payload: x,
+        isFiltered: true
     }
 }
 function countCountries(boolean) {
@@ -136,6 +142,12 @@ function setCountPages(x) {
         payload: x
     }
 }
+function setLoading(x) {
+    return {
+        type: SET_LOADING,
+        payload: x
+    }
+}
 module.exports = {
     getCountries,
     postActivity,
@@ -148,6 +160,7 @@ module.exports = {
     getActivities,
     setCountriesPage,
     setCountPages,
+    setLoading,
     GET_COUNTRIES,
     POST_ACTIVITY,
     SET_COUNT_PAGES,
@@ -155,5 +168,6 @@ module.exports = {
     COUNT_COUNTRIES,
     SET_PAGE,
     SET_COUNTRIES_PAGE,
-    INTERNAL_ERROR
+    INTERNAL_ERROR,
+    SET_LOADING
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ActivityDetail from './ActivityDetail'
+import Loader from '../Loader'
 import CountryDetail from './CountryDetail'
 const CountryDetailContainer = () => {
     const [loading, setLoading] = useState(true)
@@ -20,7 +21,7 @@ const CountryDetailContainer = () => {
         setCountry(data)
         setLoading(false)
     }
-    return loading ? <h1>LOADING</h1> : <>{id.length === 3 ? <CountryDetail {...country} /> : <ActivityDetail {...country} />}   </>
+    return loading ? <Loader /> : <>{id.length === 3 ? <CountryDetail {...country} /> : <ActivityDetail {...country} />}   </>
 }
 
 export default CountryDetailContainer

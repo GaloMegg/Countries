@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { getCountries, setCountPages } from '../../redux/actions'
+import React, { useEffect } from 'react'
+import { getCountries, setCountPages, setLoading } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import CardMap from './CardMap'
 import Loader from '../Loader'
 
 const CardsContainer = () => {
     const dis = useDispatch()
-    const [loading, setLoading] = useState(true)
-    const { countries, count, countriesPerPage, contentType, isFiltered } = useSelector(state => state)
+    const { countries, count, countriesPerPage, contentType, isFiltered, loading } = useSelector(state => state)
     useEffect(() => {
         if (!isFiltered && contentType === "countries") {
+            dis(setLoading(true))
             dis(getCountries())
         }
-        setLoading(false)
         // (cantPaises-9)/10 + 1
     }, [dis, isFiltered, contentType])
     useEffect(() => {

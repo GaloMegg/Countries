@@ -1,4 +1,4 @@
-import { SORTED_COUNTRIES, GET_COUNTRIES, SET_COUNT_PAGES, POST_ACTIVITY, COUNT_COUNTRIES, SET_COUNTRIES_PAGE, SET_PAGE, INTERNAL_ERROR } from './actions'
+import { SORTED_COUNTRIES, GET_COUNTRIES, SET_COUNT_PAGES, POST_ACTIVITY, COUNT_COUNTRIES, SET_COUNTRIES_PAGE, SET_LOADING, SET_PAGE, INTERNAL_ERROR } from './actions'
 
 
 const initialState = {
@@ -6,6 +6,7 @@ const initialState = {
     activity: {},
     internalError: false,
     isFiltered: false,
+    loading: true,
     contentType: 'countries',
     count: 1,
     countriesPerPage: 9,
@@ -19,8 +20,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 countries: action.payload,
                 contentType: action.contentType,
-                isFiltered: action.isFiltered
-
+                isFiltered: action.isFiltered,
+                loading: action.loading
             }
         case POST_ACTIVITY:
             return {
@@ -31,7 +32,9 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 countries: action.payload,
-                isFiltered: action.isFiltered
+                isFiltered: action.isFiltered,
+
+
             }
         case COUNT_COUNTRIES:
             return {
@@ -57,6 +60,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 internalError: action.payload
+            }
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: action.payload
             }
         default: {
             return { ...state }

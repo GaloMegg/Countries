@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCountries, filteredCountry, searchCountry, sortedCountries, countCountries, setCountriesPage, setPage, getActivities } from "../../redux/actions"
+import { getCountries, filteredCountry, searchCountry, sortedCountries, countCountries, setCountriesPage, setPage, setLoading, getActivities } from "../../redux/actions"
 const NavBar = () => {
     const [alphabeticalOrder, setAlphabeticalOrder] = useState(true)
     const [isOrderedAlph, setIsOrderedAlph] = useState(false)
@@ -9,11 +9,13 @@ const NavBar = () => {
     const [difOrder, setDifOrder] = useState(true)
     const [isOrderDif, setIsOrderDif] = useState(false)
     const disp = useDispatch()
-    const { countries, count, countriesPerPage, contentType, pages } = useSelector(state => state)
+    const { countries, count, countriesPerPage, contentType, pages, loading } = useSelector(state => state)
     const contentHandler = (e) => {
         if (e.target.value === "countries") {
+            disp(setLoading(true))
             disp(getCountries())
         } else {
+
             disp(setPage(1))
             disp(getActivities())
         }
@@ -40,6 +42,7 @@ const NavBar = () => {
         setIsOrderedAlph(true)
     }
     const continentFilter = (e) => {
+        disp(setLoading(true))
         disp(setPage(1))
         if (e.target.value === "all") {
             disp(getCountries())
@@ -48,6 +51,7 @@ const NavBar = () => {
         disp(filteredCountry(e.target.value))
     }
     const popSort = () => {
+        disp(setLoading(false))
         setIsOrderedAlph(false)
         setIsOrderDif(false)
         let sortedArr = popOrder ? countries.sort((a, b) => {
@@ -134,7 +138,7 @@ const NavBar = () => {
                 </div>
             </div>
 
-            {pages > 1 && <p className='nextprev--currentPages'>{count}|{pages}</p>}
+            {pages > 1 && !loading && <p className='nextprev--currentPages'>{count}|{pages}</p>}
         </nav>
     )
 }
