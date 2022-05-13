@@ -12,7 +12,6 @@ const NavBar = () => {
     const { countries, count, countriesPerPage, contentType, pages, loading } = useSelector(state => state)
     const contentHandler = (e) => {
         if (e.target.value === "countries") {
-            disp(setLoading(true))
             disp(getCountries())
         } else {
 
@@ -42,7 +41,6 @@ const NavBar = () => {
         setIsOrderedAlph(true)
     }
     const continentFilter = (e) => {
-        disp(setLoading(true))
         disp(setPage(1))
         if (e.target.value === "all") {
             disp(getCountries())
@@ -51,7 +49,6 @@ const NavBar = () => {
         disp(filteredCountry(e.target.value))
     }
     const popSort = () => {
-        disp(setLoading(false))
         setIsOrderedAlph(false)
         setIsOrderDif(false)
         let sortedArr = popOrder ? countries.sort((a, b) => {
@@ -102,15 +99,19 @@ const NavBar = () => {
         if (countriesPerPage !== 10) disp(setCountriesPage(10))
         disp(countCountries(true))
     }
+    const setLoadingHandler = () => {
+        disp(setLoading(true))
+
+    }
     return (
         <nav className='nav'>
 
-            <select name="" id="" className='countryActivities' onClick={contentHandler}>
+            <select name="" id="" className='countryActivities' onClick={contentHandler} onChange={setLoadingHandler}>
                 <option value="countries">Countries</option>
                 <option value="activities">Activities</option>
             </select>
             {contentType === "countries" && <input className='search' type="text" name="" id="" placeholder='&#128270; Buscar' onChange={searchBarHandler} />}
-            {contentType === "countries" && <select className='continents' name="" id="" onClick={continentFilter}>
+            {contentType === "countries" && <select className='continents' name="" id="" onClick={continentFilter} onChange={setLoadingHandler}>
                 <option className='continent' value="all">All</option>
                 <option className='continent' value="europe">Europe</option>
                 <option className='continent' value="asia">Asia</option>
