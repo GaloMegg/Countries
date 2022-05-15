@@ -47,7 +47,7 @@ module.exports = (sequelize) => {
                 this.setDataValue('capital', v.toLowerCase());
             },
             get() {
-                const capital = this.getDataValue('continent');
+                const capital = this.getDataValue('capital');
                 const CAP_CAPITALIZED = capital[0].toUpperCase() + capital.slice(1);
                 return CAP_CAPITALIZED
             }
